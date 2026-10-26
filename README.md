@@ -1,8 +1,7 @@
 # Brincando e Aprendendo
 
 Atividades lúdicas para turmas de educação infantil (Infantil 4 e Infantil 5), desenvolvidas
-como Atividade Extensionista II do curso de Análise e Desenvolvimento de Sistemas da Uninter
-e aplicadas no CMEI Educadora Andréia da Silva Alves, em Araucária/PR.
+como Atividade Extensionista II do curso de Análise e Desenvolvimento de Sistemas da Uninter.
 
 ## Como abrir
 
