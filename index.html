@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brincando e Aprendendo</title>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<main id="app">
+
+  <!-- TELA 1 - INICIO -->
+  <section id="tela-inicio" class="tela ativa">
+    <h1 class="titulo">Brincando e Aprendendo</h1>
+    <div class="menu" id="menu-modulos">
+
+      <button class="cartao cor-1" data-modulo="formas" data-fala="Formas e cores">
+        <span class="cartao-icone" aria-hidden="true">
+          <svg viewBox="0 0 112 80"><circle cx="28" cy="40" r="26" fill="#f6ae2d"/><rect x="58" y="14" width="52" height="52" rx="6" fill="#ffffff"/></svg>
+        </span>
+        <span class="cartao-nome">Formas e cores</span>
+      </button>
+
+      <button class="cartao cor-2" data-modulo="animais" data-fala="Animais e sons">
+        <span class="cartao-icone" aria-hidden="true">🐶</span>
+        <span class="cartao-nome">Animais e sons</span>
+      </button>
+
+      <button class="cartao cor-3" data-modulo="quantidades" data-fala="Quantidades">
+        <span class="cartao-icone" aria-hidden="true">🍎</span>
+        <span class="cartao-nome">Quantidades</span>
+      </button>
+
+      <button class="cartao cor-4" data-modulo="tamanhos" data-fala="Maior e menor">
+        <span class="cartao-icone" aria-hidden="true">
+          <svg viewBox="0 0 112 80"><circle cx="26" cy="40" r="24" fill="#ffffff"/><circle cx="82" cy="40" r="12" fill="#ffffff"/></svg>
+        </span>
+        <span class="cartao-nome">Maior e menor</span>
+      </button>
+
+      <button class="cartao cor-5" data-modulo="diferente" data-fala="Qual é diferente">
+        <span class="cartao-icone" aria-hidden="true">
+          <svg viewBox="0 0 112 80"><circle cx="22" cy="40" r="17" fill="#ffffff"/><circle cx="58" cy="40" r="17" fill="#ffffff"/><polygon points="94,21 111,59 77,59" fill="#f6ae2d"/></svg>
+        </span>
+        <span class="cartao-nome">Qual é diferente</span>
+      </button>
+
+      <button class="cartao cor-6" data-modulo="sequencia" data-fala="O que vem depois">
+        <span class="cartao-icone" aria-hidden="true">
+          <svg viewBox="0 0 112 80"><circle cx="18" cy="40" r="14" fill="#ffffff"/><rect x="40" y="26" width="28" height="28" rx="4" fill="#f6ae2d"/><circle cx="94" cy="40" r="14" fill="#ffffff"/></svg>
+        </span>
+        <span class="cartao-nome">O que vem depois</span>
+      </button>
+
+      <button class="cartao cor-7" data-modulo="memoria" data-fala="Jogo da memória">
+        <span class="cartao-icone" aria-hidden="true">
+          <svg viewBox="0 0 112 80"><rect x="10" y="14" width="42" height="52" rx="6" fill="#ffffff"/><rect x="60" y="14" width="42" height="52" rx="6" fill="#f6ae2d"/></svg>
+        </span>
+        <span class="cartao-nome">Jogo da memória</span>
+      </button>
+
+    </div>
+    <footer class="rodape">
+      <button id="btn-professora" class="botao-discreto">Para a professora</button>
+    </footer>
+  </section>
+
+  <!-- TELA 2 - JOGO -->
+  <section id="tela-jogo" class="tela">
+    <header class="barra">
+      <button id="btn-voltar" class="botao-barra" title="Voltar ao início">&#8592; Voltar</button>
+      <div id="placar" class="placar" aria-live="polite"></div>
+      <button id="btn-ajuda" class="botao-barra" title="Ajuda">?</button>
+    </header>
+
+    <div id="comando" class="comando">
+      <span id="comando-texto" class="comando-texto"></span>
+      <span id="comando-visual" class="comando-visual" aria-hidden="true"></span>
+    </div>
+
+    <div id="legenda-som" class="legenda-som oculto" aria-live="polite"></div>
+
+    <div id="area-opcoes" class="area-opcoes"></div>
+
+    <div id="area-contagem" class="area-contagem oculto">
+      <div id="itens-disponiveis" class="itens-disponiveis"></div>
+      <div class="cesta-caixa">
+        <div class="cesta" aria-hidden="true">🧺</div>
+        <div id="cesta-itens" class="cesta-itens"></div>
+      </div>
+    </div>
+
+    <div id="area-memoria" class="area-memoria oculto">
+      <div id="grade-memoria" class="grade-memoria"></div>
+    </div>
+  </section>
+
+  <!-- TELA 3 - FIM DE RODADA -->
+  <section id="tela-fim" class="tela">
+    <h2 class="titulo">Muito bem!</h2>
+    <div id="estrelas-fim" class="estrelas-fim" aria-hidden="true"></div>
+    <div class="menu-fim">
+      <button id="btn-denovo" class="botao-grande botao-verde">Jogar de novo</button>
+      <button id="btn-inicio" class="botao-grande botao-azul">Voltar ao início</button>
+    </div>
+  </section>
+
+  <!-- TELA 4 - AREA DA PROFESSORA -->
+  <section id="tela-professora" class="tela tela-texto">
+    <h2>Área da professora</h2>
+
+    <h3>Como usar em sala</h3>
+    <p>As atividades foram pensadas para uso <strong>coletivo</strong>: o computador ligado ao projetor
+    ou à televisão, com a turma reunida. As crianças se revezam vindo ao equipamento para responder,
+    uma por vez, enquanto as outras acompanham pela tela grande e participam em voz alta.
+    Cada rodada tem 8 perguntas e leva de 3 a 5 minutos, o que permite atender toda a turma
+    em cerca de 30 minutos.</p>
+    <p>Tudo pode ser feito sem o mouse: as <strong>teclas 1, 2, 3 e 4</strong> respondem as alternativas,
+    as <strong>setas</strong> escolhem a atividade na tela inicial, <strong>Enter</strong> confirma,
+    <strong>Esc</strong> volta ao início e a tecla <strong>?</strong> abre a ajuda. Na atividade de
+    quantidades, a <strong>barra de espaço</strong> coloca um item na cesta e o <strong>Backspace</strong> tira.</p>
+
+    <h3>As sete atividades</h3>
+    <ul class="lista">
+      <li><strong>Formas e cores</strong> — identificar a figura pedida.</li>
+      <li><strong>Animais e sons</strong> — reconhecer o animal pelo som que ele faz.</li>
+      <li><strong>Quantidades</strong> — colocar na cesta a quantidade pedida.</li>
+      <li><strong>Maior e menor</strong> — comparar tamanhos entre figuras iguais.</li>
+      <li><strong>Qual é diferente</strong> — achar o elemento que não pertence ao grupo.</li>
+      <li><strong>O que vem depois</strong> — continuar um padrão que se repete.</li>
+      <li><strong>Jogo da memória</strong> — encontrar os pares de figuras iguais.</li>
+    </ul>
+
+    <h3>Aluno com deficiência auditiva</h3>
+    <p>A atividade de animais é a única que depende de ouvir. Nela, o alto-falante na tela
+    <strong>pulsa enquanto o som toca</strong>, o que mostra que há som mesmo para quem não o escuta.
+    Ligando a opção <strong>legenda escrita</strong> nas configurações abaixo, a transcrição do som
+    aparece na tela ("au au au", "muuu"), para a professora ler junto com a criança.
+    Se ainda assim a atividade não servir à turma, ela pode ser desligada,
+    e as outras seis continuam funcionando normalmente, sem depender de som.</p>
+
+    <h3>Configurações</h3>
+    <div class="config">
+      <label class="linha-config"><input type="checkbox" id="cfg-audio" checked><span>Narração em voz alta</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-legendas"><span>Legenda escrita nos sons dos animais</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-formas" checked><span>Ativar "Formas e cores"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-animais" checked><span>Ativar "Animais e sons"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-quantidades" checked><span>Ativar "Quantidades"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-tamanhos" checked><span>Ativar "Maior e menor"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-diferente" checked><span>Ativar "Qual é diferente"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-sequencia" checked><span>Ativar "O que vem depois"</span></label>
+      <label class="linha-config"><input type="checkbox" id="cfg-memoria" checked><span>Ativar "Jogo da memória"</span></label>
+
+      <fieldset class="grupo-config">
+        <legend>Nível das atividades</legend>
+        <label class="linha-config">
+          <input type="radio" name="progressao" value="simples" checked>
+          <span>Mais simples — indicado para o Infantil 4: a figura pedida aparece ao lado do comando,
+          três alternativas, contar até 3 e padrões de duas figuras</span>
+        </label>
+        <label class="linha-config">
+          <input type="radio" name="progressao" value="completa">
+          <span>Mais completo — indicado para o Infantil 5: a figura pedida não aparece, quatro alternativas,
+          forma e cor combinadas, contar até 5 e padrões de três figuras</span>
+        </label>
+      </fieldset>
+    </div>
+
+    <h3>Folha de atividade</h3>
+    <p>O botão abaixo gera uma folha para imprimir com o mesmo conteúdo trabalhado na tela,
+    para as crianças continuarem a atividade no papel.</p>
+    <button id="btn-imprimir" class="botao-grande botao-azul">Gerar folha para imprimir</button>
+
+    <p class="voltar-config"><button id="btn-fechar-professora" class="botao-grande botao-verde">Voltar ao início</button></p>
+  </section>
+
+</main>
+
+<!-- AJUDA -->
+<div id="ajuda" class="overlay oculto" role="dialog" aria-label="Ajuda">
+  <div class="ajuda-caixa">
+    <p id="ajuda-texto"></p>
+    <p class="ajuda-dica">Toque em qualquer lugar da tela para voltar ao jogo.</p>
+  </div>
+</div>
+
+<script src="js/comum.js"></script>
+<script src="js/formas.js"></script>
+<script src="js/animais.js"></script>
+<script src="js/quantidades.js"></script>
+<script src="js/tamanhos.js"></script>
+<script src="js/diferente.js"></script>
+<script src="js/sequencia.js"></script>
+<script src="js/memoria.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
