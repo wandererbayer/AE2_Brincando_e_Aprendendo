@@ -245,6 +245,7 @@ body{
 }
 .botao-verde{ background:var(--verde); }
 .botao-azul{ background:var(--azul); }
+a.botao-grande{ display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
 
 /* ---------- RODAPE E AREA DA PROFESSORA ---------- */
 

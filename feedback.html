@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sua opinião — Brincando e Aprendendo</title>
+  <style>
+    /* Estilo mínimo e autônomo: a página funciona mesmo sem o estilo.css do site.
+       Se quiser o mesmo visual das outras páginas, adicione
+       <link rel="stylesheet" href="css/estilo.css"> e apague este bloco. */
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #fff8e7; color: #2b2b2b; margin: 0; line-height: 1.5; }
+    main { max-width: 640px; margin: 0 auto; padding: 1.2rem 1rem 3rem; }
+    h1 { font-size: 1.5rem; margin-bottom: 0.2rem; }
+    .sub { color: #5a5347; margin-bottom: 1.4rem; }
+    fieldset { border: 2px solid #f0d58a; border-radius: 12px; background: #fff; padding: 0.9rem 1rem; margin: 0 0 1rem; }
+    legend { font-weight: 700; padding: 0 0.4rem; }
+    label { display: block; margin: 0.35rem 0; cursor: pointer; }
+    input[type="text"], textarea {
+      width: 100%; padding: 0.7rem; font: inherit; border: 2px solid #e2d3a8; border-radius: 8px;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .notas { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .notas label { flex: 1 1 90px; text-align: center; border: 2px solid #e2d3a8; border-radius: 10px; padding: 0.6rem 0.2rem; margin: 0; }
+    .notas input { margin-right: 0.3rem; }
+    .acoes { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+    .btn { display: block; text-align: center; padding: 0.95rem 1rem; border: 0; border-radius: 10px; font: inherit; font-weight: 700; font-size: 1.05rem; cursor: pointer; text-decoration: none; }
+    .btn-principal { background: #f2b600; color: #2b2b2b; }
+    .btn-secundario { background: #fff; color: #2b2b2b; border: 2px solid #f2b600; }
+    .aviso { font-size: 0.85rem; color: #5a5347; margin-top: 0.8rem; }
+    .voltar { display: inline-block; margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Conta pra gente o que achou! 💬</h1>
+  <p class="sub">Leva menos de 2 minutos. Sua opinião ajuda a melhorar o site para as crianças.</p>
+
+  <form id="form-feedback" onsubmit="return false;">
+
+    <fieldset>
+      <legend>Quem está respondendo?</legend>
+      <label for="nome">Seu nome (opcional)</label>
+      <input type="text" id="nome" autocomplete="name">
+      <label for="turma">Turma</label>
+      <input type="text" id="turma" placeholder="Ex: Infantil 4">
+    </fieldset>
+
+    <fieldset>
+      <legend>Quais atividades vocês usaram?</legend>
+      <label><input type="checkbox" name="atividade" value="Formas e cores"> Formas e cores</label>
+      <label><input type="checkbox" name="atividade" value="Animais e sons"> Animais e sons</label>
+      <label><input type="checkbox" name="atividade" value="Quantidades"> Quantidades</label>
+      <label><input type="checkbox" name="atividade" value="Maior e menor"> Maior e menor</label>
+      <label><input type="checkbox" name="atividade" value="Qual é diferente"> Qual é diferente</label>
+      <label><input type="checkbox" name="atividade" value="O que vem depois"> O que vem depois</label>
+      <label><input type="checkbox" name="atividade" value="Jogo da memória"> Jogo da memória</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>No geral, gostou do site?</legend>
+      <div class="notas">
+        <label><input type="radio" name="nota" value="1 - Não gostei"> 😞</label>
+        <label><input type="radio" name="nota" value="2 - Gostei pouco"> 😕</label>
+        <label><input type="radio" name="nota" value="3 - Mais ou menos"> 😐</label>
+        <label><input type="radio" name="nota" value="4 - Gostei"> 🙂</label>
+        <label><input type="radio" name="nota" value="5 - Gostei muito"> 😍</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>As crianças conseguiram usar?</legend>
+      <label><input type="radio" name="autonomia" value="Sim, sozinhas"> Sim, sozinhas</label>
+      <label><input type="radio" name="autonomia" value="Sim, com ajuda"> Sim, com ajuda da professora</label>
+      <label><input type="radio" name="autonomia" value="Tiveram dificuldade"> Tiveram dificuldade</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>O que vocês acharam?</legend>
+      <textarea id="acharam" placeholder="O que funcionou bem? As crianças gostaram?"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>O que precisa melhorar?</legend>
+      <textarea id="melhorar" placeholder="Algo confuso, difícil ou que faltou?"></textarea>
+    </fieldset>
+
+    <div class="acoes">
+      <button type="button" class="btn btn-principal" id="btn-email">✉️ Enviar por e-mail</button>
+      <a class="btn btn-secundario" id="link-gmail" href="#" target="_blank" rel="noopener">Abrir no Gmail (pelo navegador)</a>
+    </div>
+    <p class="aviso">
+      Ao clicar, abrimos o seu e-mail com a mensagem já escrita — é só apertar em enviar.
+      Se nada abrir, use o botão do Gmail.
+    </p>
+  </form>
+
+  <a class="voltar" href="index.html">← Voltar ao site</a>
+</main>
+
+<script>
+  /* ===== CONFIGURAÇÃO ===== */
+  // Troque pelo e-mail que vai receber as respostas.
+  const EMAIL_DESTINO = 'wanderer.bayer@gmail.com';
+  const ASSUNTO = 'Feedback - Brincando e Aprendendo';
+
+  /** Lê o formulário e monta o texto do e-mail. */
+  function montarMensagem() {
+    const valor = (id) => document.getElementById(id).value.trim() || '(não informado)';
+    const marcado = (nome) => {
+      const el = document.querySelector('input[name="' + nome + '"]:checked');
+      return el ? el.value : '(não informado)';
+    };
+    const atividades = Array.from(document.querySelectorAll('input[name="atividade"]:checked'))
+      .map((el) => el.value).join(', ') || '(não informado)';
+
+    return [
+      'Nome: ' + valor('nome'),
+      'Turma: ' + valor('turma'),
+      '',
+      'Atividades usadas: ' + atividades,
+      'Avaliação geral: ' + marcado('nota'),
+      'As crianças conseguiram usar? ' + marcado('autonomia'),
+      '',
+      'O que acharam:',
+      valor('acharam'),
+      '',
+      'O que precisa melhorar:',
+      valor('melhorar')
+    ].join('\n');
+  }
+
+  /** Abre o programa de e-mail do aparelho (mailto). */
+  document.getElementById('btn-email').addEventListener('click', () => {
+    const url = 'mailto:' + EMAIL_DESTINO +
+      '?subject=' + encodeURIComponent(ASSUNTO) +
+      '&body=' + encodeURIComponent(montarMensagem());
+    window.location.href = url;
+  });
+
+  /** Alternativa para quem usa Gmail no navegador (computador da escola, por exemplo). */
+  document.getElementById('link-gmail').addEventListener('click', (e) => {
+    e.currentTarget.href = 'https://mail.google.com/mail/?view=cm&fs=1' +
+      '&to=' + encodeURIComponent(EMAIL_DESTINO) +
+      '&su=' + encodeURIComponent(ASSUNTO) +
+      '&body=' + encodeURIComponent(montarMensagem());
+  });
+</script>
+</body>
+</html>
