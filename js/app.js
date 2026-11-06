@@ -40,6 +40,7 @@ function abrirModulo(nome){
   Estado.indice = 0;
   Estado.estrelas = 0;
   atualizarPlacar();
+  Avaliacao.iniciarRodada(nome);
 
   var area = Modulos[nome].area;
   elemento("area-opcoes").classList.toggle("oculto",   area !== "opcoes");
@@ -56,6 +57,7 @@ function mostrarQuestao(){
   Estado.errouNaQuestao = false;
   Estado.bloqueado = false;
   Estado.resolvida = false;
+  Avaliacao.inicioQuestao();
 
   elemento("comando-texto").textContent = questao.comandoTexto;
 
@@ -120,6 +122,7 @@ App.concluir = function(ganhouEstrela){
   if(Estado.resolvida) return;
   Estado.resolvida = true;
   Estado.bloqueado = true;
+  Avaliacao.registrarQuestao(ganhouEstrela);
   somAcerto();
   if(ganhouEstrela){
     Estado.estrelas++;
@@ -135,6 +138,7 @@ function proximaQuestao(){
 }
 
 function terminarRodada(){
+  Avaliacao.fecharRodada();
   var texto = "";
   for(var i=0;i<Estado.estrelas;i++) texto += "⭐";
   elemento("estrelas-fim").textContent = texto || "⭐";
@@ -335,9 +339,25 @@ document.addEventListener("DOMContentLoaded", function(){
   elemento("btn-ajuda").addEventListener("click", abrirAjuda);
   elemento("ajuda").addEventListener("click", fecharAjuda);
 
-  elemento("btn-professora").addEventListener("click", function(){ mostrarTela("tela-professora"); });
+  elemento("btn-professora").addEventListener("click", function(){
+    Avaliacao.montarRelatorio();
+    mostrarTela("tela-professora");
+  });
   elemento("btn-fechar-professora").addEventListener("click", irParaInicio);
   elemento("btn-imprimir").addEventListener("click", gerarFolha);
+
+  /* Avaliacao individual */
+  elemento("form-avaliacao").addEventListener("submit", function(evento){
+    evento.preventDefault();
+    var nome = elemento("avaliacao-nome").value.trim();
+    if(!nome) return;
+    Avaliacao.iniciar(nome);
+    elemento("avaliacao-nome").value = "";
+    irParaInicio();
+  });
+  elemento("btn-encerrar-avaliacao").addEventListener("click", Avaliacao.encerrar);
+  elemento("btn-imprimir-relatorio").addEventListener("click", Avaliacao.imprimirRelatorio);
+  elemento("btn-apagar-relatorio").addEventListener("click", Avaliacao.apagarTudo);
 
   elemento("cfg-audio").addEventListener("change", function(){ Config.audio = this.checked; salvarConfig(); });
   elemento("cfg-legendas").addEventListener("change", function(){ Config.legendas = this.checked; salvarConfig(); });

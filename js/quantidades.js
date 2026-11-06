@@ -92,6 +92,7 @@ var Quantidades = {
         usados[usados.length-1].classList.remove("usado");
         if(cesta.lastChild) cesta.removeChild(cesta.lastChild);
         Quantidades.colocados--;
+        Estado.errouNaQuestao = true;   /* corrigiu a contagem: nao foi de primeira */
       }
     }
   }

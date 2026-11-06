@@ -172,6 +172,34 @@
     para as crianças continuarem a atividade no papel.</p>
     <button id="btn-imprimir" class="botao-grande botao-azul">Gerar folha para imprimir</button>
 
+    <h3>Avaliação individual</h3>
+    <p>Para acompanhar uma criança em particular, digite o nome dela e clique em começar.
+    A partir daí, cada rodada que ela terminar fica registrada. No relatório abaixo aparecem as
+    atividades em que ela vai bem e as que precisam de mais apoio. Para voltar ao uso com a turma,
+    clique em <strong>Encerrar</strong> no canto da tela.</p>
+    <p>Os registros ficam <strong>somente neste computador</strong> e não são enviados pela internet.
+    Use só o primeiro nome ou um apelido da criança.</p>
+    <form id="form-avaliacao" class="form-avaliacao">
+      <label for="avaliacao-nome">Nome da criança</label>
+      <input type="text" id="avaliacao-nome" autocomplete="off" maxlength="30" placeholder="Ex: Ana">
+      <button type="submit" class="botao-grande botao-verde">Começar avaliação</button>
+    </form>
+
+    <h4 class="subtitulo-relatorio">Relatório</h4>
+    <p class="legenda-relatorio">
+      <span class="faixa-bem">80% ou mais: vai bem</span>
+      <span class="faixa-meio">50% a 79%: em desenvolvimento</span>
+      <span class="faixa-apoio">abaixo de 50%: precisa de mais apoio</span>
+    </p>
+    <p class="legenda-relatorio-texto">O percentual é de perguntas acertadas na primeira tentativa
+    (no jogo da memória, pares achados sem errar). Também aparecem o número de rodadas e o tempo médio
+    por pergunta. Avalie com pelo menos duas rodadas por atividade: uma só pode ser sorte ou distração.</p>
+    <div id="relatorio-avaliacao"></div>
+    <div class="menu-fim menu-relatorio">
+      <button type="button" id="btn-imprimir-relatorio" class="botao-grande botao-azul">Imprimir relatório</button>
+      <button type="button" id="btn-apagar-relatorio" class="botao-discreto">Apagar registros</button>
+    </div>
+
     <h3>Sua opinião</h3>
     <p>Depois de usar o site com a turma, conte o que achou e o que precisa melhorar.
     Leva menos de 2 minutos e ajuda a melhorar as atividades.</p>
@@ -181,6 +209,12 @@
   </section>
 
 </main>
+
+<!-- FAIXA DE AVALIACAO INDIVIDUAL -->
+<div id="faixa-avaliacao" class="faixa-avaliacao oculto" aria-live="polite">
+  Avaliando: <strong id="faixa-avaliacao-nome"></strong>
+  <button type="button" id="btn-encerrar-avaliacao">Encerrar</button>
+</div>
 
 <!-- AJUDA -->
 <div id="ajuda" class="overlay oculto" role="dialog" aria-label="Ajuda">
@@ -198,6 +232,7 @@
 <script src="js/diferente.js"></script>
 <script src="js/sequencia.js"></script>
 <script src="js/memoria.js"></script>
+<script src="js/avaliacao.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

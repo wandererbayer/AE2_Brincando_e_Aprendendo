@@ -80,6 +80,7 @@ var Memoria = {
       }
     } else {
       Memoria.travado = true;
+      Avaliacao.erroMemoria();
       somErro();
       setTimeout(function(){
         primeira.classList.remove("virada");

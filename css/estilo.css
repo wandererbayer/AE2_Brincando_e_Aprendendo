@@ -281,6 +281,48 @@ a.botao-grande{ display:inline-flex; align-items:center; justify-content:center;
 .grupo-config legend{ padding:0 8px; color:var(--amarelo); }
 .voltar-config{ margin:34px 0 4vh; }
 
+/* ---------- AVALIACAO INDIVIDUAL ---------- */
+
+.form-avaliacao{ display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:10px 0 6px; }
+.form-avaliacao input{
+  font-family:inherit; font-size:20px; padding:12px 14px; border-radius:10px;
+  border:2px solid #ffffff60; background:var(--fundo-claro); color:#fff; min-width:14em;
+}
+.form-avaliacao .botao-grande{ min-height:64px; font-size:20px; padding:12px 24px; }
+
+.subtitulo-relatorio{ font-size:20px; margin:22px 0 8px; }
+.legenda-relatorio{ display:flex; flex-wrap:wrap; gap:10px; }
+.legenda-relatorio span{ padding:4px 10px; border-radius:8px; font-size:15px; }
+.legenda-relatorio-texto{ font-size:15px; color:#ffffffbb; }
+.relatorio-vazio{ color:#ffffffaa; font-style:italic; }
+
+.tabela-rolagem{ overflow-x:auto; max-width:100%; }
+.tabela-avaliacao{ border-collapse:collapse; font-size:15px; margin:8px 0; }
+.tabela-avaliacao th, .tabela-avaliacao td{ border:1px solid #ffffff40; padding:8px 10px; text-align:center; }
+.tabela-avaliacao thead th{ background:var(--fundo-claro); font-size:14px; }
+.tabela-avaliacao tbody th{ text-align:left; white-space:nowrap; }
+.tabela-avaliacao td strong{ display:block; font-size:20px; }
+.tabela-avaliacao td span{ font-size:12px; opacity:0.85; white-space:nowrap; }
+.tabela-avaliacao .sem-dado{ color:#ffffff60; }
+
+/* Cores com contraste alto e texto, nunca so cor (daltonismo). */
+.faixa-bem{ background:#2a9d4a; color:#fff; }
+.faixa-meio{ background:#f6ae2d; color:#10213a; }
+.faixa-apoio{ background:#d62828; color:#fff; }
+
+.menu-relatorio{ justify-content:flex-start; gap:16px; align-items:center; margin-top:10px; }
+.menu-relatorio .botao-grande{ min-height:64px; font-size:20px; padding:12px 24px; }
+
+.faixa-avaliacao{
+  position:fixed; right:12px; bottom:12px; z-index:40;
+  background:#000000b0; border:2px solid var(--amarelo); border-radius:10px;
+  padding:6px 8px 6px 12px; font-size:15px; display:flex; align-items:center; gap:8px;
+}
+.faixa-avaliacao button{
+  font-family:inherit; font-size:14px; padding:4px 10px; border-radius:8px;
+  border:none; background:var(--amarelo); color:#10213a; font-weight:bold; cursor:pointer;
+}
+
 /* ---------- AJUDA ---------- */
 
 .overlay{
@@ -311,7 +353,7 @@ a.botao-grande{ display:inline-flex; align-items:center; justify-content:center;
     font-size:12pt;
   }
   /* Sem isto o #app continua ocupando 100vh e sai uma pagina em branco. */
-  #app, .overlay{ display:none !important; }
+  #app, .overlay, .faixa-avaliacao{ display:none !important; }
   #folha-impressao{ display:block !important; }
 }
 
@@ -437,3 +479,13 @@ a.botao-grande{ display:inline-flex; align-items:center; justify-content:center;
   0%,100%{ transform:scale(1);    opacity:1;   }
   50%    { transform:scale(1.22); opacity:.65; }
 }
+
+/* Relatorio de avaliacao impresso: tabela em preto e branco legivel. */
+#folha-impressao .tabela-avaliacao{ width:100%; font-size:9pt; color:#000; }
+#folha-impressao .tabela-avaliacao th, #folha-impressao .tabela-avaliacao td{ border:1px solid #000; padding:4px; }
+#folha-impressao .tabela-avaliacao thead th{ background:#eee; }
+#folha-impressao .tabela-avaliacao td strong{ font-size:12pt; }
+#folha-impressao .faixa-bem, #folha-impressao .faixa-meio, #folha-impressao .faixa-apoio{
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+#folha-impressao .tabela-avaliacao .sem-dado{ color:#777; }
